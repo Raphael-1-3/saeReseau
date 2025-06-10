@@ -1,0 +1,60 @@
+Jun 10 20:09:32.806 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Jun 10 20:09:32.807 HYPERVISOR: Started on IP = localhost, TCP port = 55953.
+Jun 10 20:09:33.311 HYPERVISOR: exec_cmd: hypervisor version 
+Jun 10 20:09:33.311 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\rapha\GNS3\projects\SAE_Reseau\project-files\dynamips 
+Jun 10 20:09:33.312 GENERAL: working_dir=C:\Users\rapha\GNS3\projects\SAE_Reseau\project-files\dynamips
+Jun 10 20:09:33.312 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\rapha\GNS3\projects\SAE_Reseau\project-files\dynamips\6c6670d2-daec-4e2a-9ee9-ec32fd1d9d97 
+Jun 10 20:09:33.313 GENERAL: working_dir=C:\Users\rapha\GNS3\projects\SAE_Reseau\project-files\dynamips\6c6670d2-daec-4e2a-9ee9-ec32fd1d9d97
+Jun 10 20:09:33.313 HYPERVISOR: exec_cmd: vm create R1 3 c3600 
+Jun 10 20:09:33.314 VM: VM R1 created.
+Jun 10 20:09:33.315 HYPERVISOR: exec_cmd: vm set_con_tcp_port R1 5003 
+Jun 10 20:09:33.315 HYPERVISOR: exec_cmd: c3600 get_mac_addr R1 
+Jun 10 20:09:33.315 HYPERVISOR: exec_cmd: vm set_ios R1 C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:09:33.316 HYPERVISOR: exec_cmd: vm get_status R1 
+Jun 10 20:09:33.316 HYPERVISOR: exec_cmd: vm set_idle_pc R1 0x60693818 
+Jun 10 20:09:33.316 HYPERVISOR: exec_cmd: vm set_exec_area R1 64 
+Jun 10 20:09:33.316 HYPERVISOR: exec_cmd: vm set_ram R1 192 
+Jun 10 20:09:33.317 HYPERVISOR: exec_cmd: vm set_nvram R1 256 
+Jun 10 20:09:33.317 HYPERVISOR: exec_cmd: vm get_status R1 
+Jun 10 20:09:33.317 HYPERVISOR: exec_cmd: vm slot_add_binding R1 0 0 NM-4E 
+Jun 10 20:09:33.379 HYPERVISOR: exec_cmd: vm set_ios R1 C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:09:34.205 HYPERVISOR: exec_cmd: vm set_ios R1 C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:09:34.999 HYPERVISOR: exec_cmd: vm set_ios R1 C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:09:35.822 HYPERVISOR: exec_cmd: vm set_ios R1 C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:09:42.705 HYPERVISOR: exec_cmd: vm set_ios R1 C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:09:42.706 HYPERVISOR: exec_cmd: vm rename R1 Recherch 
+Jun 10 20:09:42.751 HYPERVISOR: exec_cmd: vm set_ios Recherch C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:09:46.743 HYPERVISOR: exec_cmd: vm set_ios Recherch C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:09:46.744 HYPERVISOR: exec_cmd: vm rename Recherch Recherche 
+Jun 10 20:09:46.788 HYPERVISOR: exec_cmd: vm set_ios Recherche C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:12:06.863 HYPERVISOR: exec_cmd: vm set_ios Recherche C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:14:12.883 HYPERVISOR: exec_cmd: nio create_udp udp-22098c5a-73fc-4ff5-b71a-6a020fa0a415 10016 127.0.0.1 10017 
+Jun 10 20:14:13.162 HYPERVISOR: exec_cmd: vm slot_add_nio_binding Recherche 0 0 udp-22098c5a-73fc-4ff5-b71a-6a020fa0a415 
+Jun 10 20:14:13.163 HYPERVISOR: exec_cmd: vm get_status Recherche 
+Jun 10 20:16:39.424 HYPERVISOR: exec_cmd: nio create_udp udp-1734828b-327d-41f0-9a03-abbf288038dc 10026 127.0.0.1 10027 
+Jun 10 20:16:39.427 HYPERVISOR: exec_cmd: vm slot_add_nio_binding Recherche 0 1 udp-1734828b-327d-41f0-9a03-abbf288038dc 
+Jun 10 20:16:39.428 HYPERVISOR: exec_cmd: vm get_status Recherche 
+Jun 10 20:17:04.518 HYPERVISOR: exec_cmd: vm set_ios Recherche C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:17:05.761 HYPERVISOR: exec_cmd: vm set_ios Recherche C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:19:39.193 HYPERVISOR: exec_cmd: vm set_ios Recherche C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:19:39.836 HYPERVISOR: exec_cmd: vm set_ios Recherche C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:19:40.277 HYPERVISOR: exec_cmd: vm set_ios Recherche C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:24:11.023 HYPERVISOR: exec_cmd: vm set_ios Recherche C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 20:24:18.825 HYPERVISOR: exec_cmd: vm set_ios Recherche C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 21:30:48.718 HYPERVISOR: exec_cmd: vm set_ios Recherche C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 21:40:12.327 HYPERVISOR: exec_cmd: vm set_ios Recherche C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 21:40:12.328 HYPERVISOR: exec_cmd: vm rename Recherche R2 
+Jun 10 21:40:12.389 HYPERVISOR: exec_cmd: vm set_ios R2 C:/Users/rapha/GNS3/images/IOS/c3640-ik9o3s-mz.124-25c.image 
+Jun 10 21:51:58.244 HYPERVISOR: exec_cmd: vm get_status R2 
+Jun 10 21:51:58.244 HYPERVISOR: exec_cmd: vm slot_remove_nio_binding R2 0 0 
+Jun 10 21:51:58.246 HYPERVISOR: exec_cmd: nio delete udp-22098c5a-73fc-4ff5-b71a-6a020fa0a415 
+Jun 10 21:51:58.305 HYPERVISOR: exec_cmd: vm get_status R2 
+Jun 10 21:51:58.305 HYPERVISOR: exec_cmd: vm slot_remove_nio_binding R2 0 1 
+Jun 10 21:51:58.307 HYPERVISOR: exec_cmd: nio delete udp-1734828b-327d-41f0-9a03-abbf288038dc 
+Jun 10 21:51:58.835 HYPERVISOR: exec_cmd: vm get_status R2 
+Jun 10 21:51:58.836 HYPERVISOR: exec_cmd: vm extract_config R2 
+Jun 10 21:51:58.836 HYPERVISOR: exec_cmd: vm delete R2 
+Jun 10 21:51:58.836 VM: VM R2 destroyed.
+Jun 10 21:51:58.837 HYPERVISOR: exec_cmd: hypervisor stop 
+Jun 10 21:51:59.301 HYPERVISOR: Stopped.
+Jun 10 21:51:59.301 GENERAL: reset done.

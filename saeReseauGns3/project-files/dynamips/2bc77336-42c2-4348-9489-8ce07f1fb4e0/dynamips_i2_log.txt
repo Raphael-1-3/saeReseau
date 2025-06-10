@@ -1,0 +1,62 @@
+Jun 10 20:07:33.718 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Jun 10 20:07:33.721 HYPERVISOR: Started on IP = localhost, TCP port = 55880.
+Jun 10 20:07:34.018 HYPERVISOR: exec_cmd: hypervisor version 
+Jun 10 20:07:34.020 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\rapha\GNS3\projects\SAE_Reseau\project-files\dynamips 
+Jun 10 20:07:34.035 GENERAL: working_dir=C:\Users\rapha\GNS3\projects\SAE_Reseau\project-files\dynamips
+Jun 10 20:07:34.035 HYPERVISOR: exec_cmd: ethsw create Switch1 
+Jun 10 20:08:27.850 HYPERVISOR: exec_cmd: ethsw rename Switch1 switch_resesau_principale 
+Jun 10 20:16:43.828 HYPERVISOR: exec_cmd: nio create_udp udp-1d116052-d676-4b50-83f0-f054cd28814b 10031 127.0.0.1 10030 
+Jun 10 20:16:43.829 HYPERVISOR: exec_cmd: ethsw add_nio switch_resesau_principale udp-1d116052-d676-4b50-83f0-f054cd28814b 
+Jun 10 20:16:43.846 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-1d116052-d676-4b50-83f0-f054cd28814b 1 
+Jun 10 20:16:46.571 HYPERVISOR: exec_cmd: nio create_udp udp-a37e1894-6666-4b04-90bc-15b61a76929a 10035 127.0.0.1 10034 
+Jun 10 20:16:46.571 HYPERVISOR: exec_cmd: ethsw add_nio switch_resesau_principale udp-a37e1894-6666-4b04-90bc-15b61a76929a 
+Jun 10 20:16:46.573 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-a37e1894-6666-4b04-90bc-15b61a76929a 1 
+Jun 10 20:17:29.335 HYPERVISOR: exec_cmd: ethsw remove_nio switch_resesau_principale udp-1d116052-d676-4b50-83f0-f054cd28814b 
+Jun 10 20:17:29.343 HYPERVISOR: exec_cmd: nio delete udp-1d116052-d676-4b50-83f0-f054cd28814b 
+Jun 10 20:17:33.256 HYPERVISOR: exec_cmd: nio create_udp udp-9961b560-f21d-45bf-aec1-19a536b35d20 10030 127.0.0.1 10031 
+Jun 10 20:17:33.256 HYPERVISOR: exec_cmd: ethsw add_nio switch_resesau_principale udp-9961b560-f21d-45bf-aec1-19a536b35d20 
+Jun 10 20:17:33.258 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-9961b560-f21d-45bf-aec1-19a536b35d20 1 
+Jun 10 20:18:03.414 HYPERVISOR: exec_cmd: nio create_udp udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 10039 127.0.0.1 10038 
+Jun 10 20:18:03.414 HYPERVISOR: exec_cmd: ethsw add_nio switch_resesau_principale udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 
+Jun 10 20:18:03.438 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 1 
+Jun 10 20:18:33.681 HYPERVISOR: exec_cmd: nio create_udp udp-832708c6-8632-42fa-b130-983211659c95 10043 127.0.0.1 10042 
+Jun 10 20:18:33.681 HYPERVISOR: exec_cmd: ethsw add_nio switch_resesau_principale udp-832708c6-8632-42fa-b130-983211659c95 
+Jun 10 20:18:33.687 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-832708c6-8632-42fa-b130-983211659c95 1 
+Jun 10 20:19:39.239 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-9961b560-f21d-45bf-aec1-19a536b35d20 1 
+Jun 10 20:19:39.249 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-a37e1894-6666-4b04-90bc-15b61a76929a 1 
+Jun 10 20:19:39.291 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 1 
+Jun 10 20:19:39.326 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-832708c6-8632-42fa-b130-983211659c95 1 
+Jun 10 20:19:39.484 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-9961b560-f21d-45bf-aec1-19a536b35d20 1 
+Jun 10 20:19:39.485 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-a37e1894-6666-4b04-90bc-15b61a76929a 1 
+Jun 10 20:19:39.491 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 1 
+Jun 10 20:19:39.498 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-832708c6-8632-42fa-b130-983211659c95 1 
+Jun 10 20:19:40.028 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-9961b560-f21d-45bf-aec1-19a536b35d20 1 
+Jun 10 20:19:40.030 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-a37e1894-6666-4b04-90bc-15b61a76929a 1 
+Jun 10 20:19:40.035 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 1 
+Jun 10 20:19:40.071 HYPERVISOR: exec_cmd: ethsw set_access_port switch_resesau_principale udp-832708c6-8632-42fa-b130-983211659c95 1 
+Jun 10 21:22:53.786 HYPERVISOR: exec_cmd: ethsw rename switch_resesau_principale LanPrcpl 
+Jun 10 21:22:53.787 HYPERVISOR: exec_cmd: ethsw set_access_port LanPrcpl udp-9961b560-f21d-45bf-aec1-19a536b35d20 1 
+Jun 10 21:22:53.788 HYPERVISOR: exec_cmd: ethsw set_access_port LanPrcpl udp-a37e1894-6666-4b04-90bc-15b61a76929a 1 
+Jun 10 21:22:53.788 HYPERVISOR: exec_cmd: ethsw set_access_port LanPrcpl udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 1 
+Jun 10 21:22:53.788 HYPERVISOR: exec_cmd: ethsw set_access_port LanPrcpl udp-832708c6-8632-42fa-b130-983211659c95 1 
+Jun 10 21:22:53.848 HYPERVISOR: exec_cmd: ethsw set_access_port LanPrcpl udp-9961b560-f21d-45bf-aec1-19a536b35d20 1 
+Jun 10 21:22:53.849 HYPERVISOR: exec_cmd: ethsw set_access_port LanPrcpl udp-a37e1894-6666-4b04-90bc-15b61a76929a 1 
+Jun 10 21:22:53.849 HYPERVISOR: exec_cmd: ethsw set_access_port LanPrcpl udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 1 
+Jun 10 21:22:53.849 HYPERVISOR: exec_cmd: ethsw set_access_port LanPrcpl udp-832708c6-8632-42fa-b130-983211659c95 1 
+Jun 10 21:23:09.676 HYPERVISOR: exec_cmd: ethsw rename LanPrcpl lanPrcpl 
+Jun 10 21:23:09.676 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-9961b560-f21d-45bf-aec1-19a536b35d20 1 
+Jun 10 21:23:09.677 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-a37e1894-6666-4b04-90bc-15b61a76929a 1 
+Jun 10 21:23:09.677 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 1 
+Jun 10 21:23:09.677 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-832708c6-8632-42fa-b130-983211659c95 1 
+Jun 10 21:23:09.735 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-9961b560-f21d-45bf-aec1-19a536b35d20 1 
+Jun 10 21:23:09.736 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-a37e1894-6666-4b04-90bc-15b61a76929a 1 
+Jun 10 21:23:09.736 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 1 
+Jun 10 21:23:09.737 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-832708c6-8632-42fa-b130-983211659c95 1 
+Jun 10 21:30:35.921 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-9961b560-f21d-45bf-aec1-19a536b35d20 1 
+Jun 10 21:30:35.922 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-a37e1894-6666-4b04-90bc-15b61a76929a 1 
+Jun 10 21:30:35.922 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 1 
+Jun 10 21:30:35.923 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-832708c6-8632-42fa-b130-983211659c95 1 
+Jun 10 21:30:35.964 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-9961b560-f21d-45bf-aec1-19a536b35d20 1 
+Jun 10 21:30:35.965 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-a37e1894-6666-4b04-90bc-15b61a76929a 1 
+Jun 10 21:30:35.966 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-8b97ce41-7154-4d1b-a282-db9d56a1be6a 1 
+Jun 10 21:30:35.967 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-832708c6-8632-42fa-b130-983211659c95 1 
