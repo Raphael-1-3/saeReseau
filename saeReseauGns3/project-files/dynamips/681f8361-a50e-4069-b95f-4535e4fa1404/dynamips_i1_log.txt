@@ -1,0 +1,28 @@
+Jun 11 07:38:06.399 HYPERVISOR: Release 0.2.23-amd64/Linux (tag 2023010200)
+Jun 11 07:38:06.399 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 41983.
+Jun 11 07:38:06.411 HYPERVISOR: exec_cmd: hypervisor version 
+Jun 11 07:38:06.413 HYPERVISOR: exec_cmd: hypervisor working_dir /home/iut45/Etudiants/o22402228/Documents/BUT_i_1/saeReseau/saeReseauGns3/project-files/dynamips 
+Jun 11 07:38:06.413 GENERAL: working_dir=/home/iut45/Etudiants/o22402228/Documents/BUT_i_1/saeReseau/saeReseauGns3/project-files/dynamips
+Jun 11 07:38:06.414 HYPERVISOR: exec_cmd: ethsw create lanPrcpl 
+Jun 11 07:38:08.261 HYPERVISOR: exec_cmd: nio create_udp udp-ac9263b0-9222-425e-8428-67e6e4d08e75 10015 127.0.0.1 10014 
+Jun 11 07:38:08.261 HYPERVISOR: exec_cmd: ethsw add_nio lanPrcpl udp-ac9263b0-9222-425e-8428-67e6e4d08e75 
+Jun 11 07:38:08.273 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-ac9263b0-9222-425e-8428-67e6e4d08e75 1 
+Jun 11 07:38:08.336 HYPERVISOR: exec_cmd: nio create_udp udp-32a64ab0-4ad8-4b25-bde4-2af71f4a8440 10018 127.0.0.1 10019 
+Jun 11 07:38:08.336 HYPERVISOR: exec_cmd: ethsw add_nio lanPrcpl udp-32a64ab0-4ad8-4b25-bde4-2af71f4a8440 
+Jun 11 07:38:08.353 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-32a64ab0-4ad8-4b25-bde4-2af71f4a8440 1 
+Jun 11 07:38:08.450 HYPERVISOR: exec_cmd: nio create_udp udp-c8cd5bdb-0331-4ad4-bd82-9e64cefca1ad 10023 127.0.0.1 10022 
+Jun 11 07:38:08.450 HYPERVISOR: exec_cmd: ethsw add_nio lanPrcpl udp-c8cd5bdb-0331-4ad4-bd82-9e64cefca1ad 
+Jun 11 07:38:08.454 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-c8cd5bdb-0331-4ad4-bd82-9e64cefca1ad 1 
+Jun 11 07:38:08.751 HYPERVISOR: exec_cmd: nio create_udp udp-a5b2748a-838e-4824-ba12-ada0d717ee91 10027 127.0.0.1 10026 
+Jun 11 07:38:08.751 HYPERVISOR: exec_cmd: ethsw add_nio lanPrcpl udp-a5b2748a-838e-4824-ba12-ada0d717ee91 
+Jun 11 07:38:08.755 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-a5b2748a-838e-4824-ba12-ada0d717ee91 1 
+Jun 11 08:33:34.254 HYPERVISOR: exec_cmd: nio create_udp udp-f360d741-65c0-41f4-b725-a46309648d5b 10062 127.0.0.1 10063 
+Jun 11 08:33:34.254 HYPERVISOR: exec_cmd: ethsw add_nio lanPrcpl udp-f360d741-65c0-41f4-b725-a46309648d5b 
+Jun 11 08:33:34.277 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-f360d741-65c0-41f4-b725-a46309648d5b 1 
+Jun 11 09:43:55.710 HYPERVISOR: exec_cmd: nio create_udp udp-bbfcf12b-9880-4f53-b524-74446f47aea3 10077 127.0.0.1 10076 
+Jun 11 09:43:55.710 HYPERVISOR: exec_cmd: ethsw add_nio lanPrcpl udp-bbfcf12b-9880-4f53-b524-74446f47aea3 
+Jun 11 09:43:55.732 HYPERVISOR: exec_cmd: ethsw set_access_port lanPrcpl udp-bbfcf12b-9880-4f53-b524-74446f47aea3 1 
+Jun 11 10:20:18.640 HYPERVISOR: exec_cmd: ethsw delete lanPrcpl 
+Jun 11 10:20:18.885 HYPERVISOR: exec_cmd: hypervisor stop 
+Jun 11 10:20:19.185 HYPERVISOR: Stopped.
+Jun 11 10:20:19.185 GENERAL: reset done.
