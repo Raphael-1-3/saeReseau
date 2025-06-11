@@ -1,12 +1,26 @@
 # SAE RESEAU 
 
-## Choix implémemtation
+## Choix implémentation
 
-Pour les routeur, c'est l'interface e0/0 qui est utilisé pour les sous-réseaux.
-Et donc l'interface e0/1 qui est utilisé pour établir le lien entre les autres réseau par le reseau principale quand cela est possible.
+Pour les routeurs, l’interface e0/0 est utilisée pour les sous-réseaux, et l’interface e0/1 est utilisée pour établir le lien entre les autres réseaux via le réseau principal, lorsque cela est possible.
 
-J'ai par ailleur choisi le routeur R3 comme serveur DHCP de façon purement arbitraire. Plus prescisement le lanPrcpl car c'est celui qui relie la plus part des sous réseaux.
+J’ai par ailleurs choisi arbitrairement le routeur R3 pour la configuration DHCP. Plus précisément, le réseau lanPrcpl, car c’est celui qui relie la plupart des sous-réseaux.
 
+Dans un premier temps, j’ai procédé au découpage de l’adresse IP fournie (54.98.152.0/23) en plusieurs sous-réseaux adaptés aux besoins de l’entreprise. Une fois les plages d’adresses définies, j’ai attribué des adresses statiques aux interfaces des routeurs, ce qui m’a permis de configurer le service DHCP de manière centralisée.
+
+Ensuite, j’ai mis en place le routage dynamique avec RIP v2 sur tous les routeurs internes, afin que chacun connaisse les routes vers les autres réseaux. Cette étape était nécessaire pour assurer le bon fonctionnement du DHCP et des communications inter-réseaux.
+
+Une fois le routage fonctionnel, j’ai configuré le serveur DHCP sur le routeur R3, en prenant soin d’exclure les premières adresses de chaque sous-réseau pour les équipements à IP fixe (comme les serveurs). J’ai ensuite configuré les relais DHCP (ip helper-address) sur les autres routeurs afin que les clients puissent recevoir leurs adresses automatiquement.
+
+Enfin, j’ai appliqué une liste de contrôle d’accès (ACL) nommée PAREFEU sur le routeur R3. Cette ACL respecte les règles de sécurité demandées :
+
+- Le réseau LibreService ne peut pas communiquer avec les autres réseaux internes,
+
+- Le réseau Recherche ne peut échanger qu’avec le réseau Développement,
+
+- Et les machines de la DMZ sont isolées des autres réseaux internes, tout en gardant un accès à Internet.
+
+D'ailleurs après avoir rencontré des problèmes avec le serveur dhcp suite à l'activation de la règle. J'ai autorisé expliciment les échanges du protocole UDP.
 ## Adressage des réseaux 
 
 **Adresse de base** : 54.98.152.0/23. Actuellement cette adresse permet d'acceuillir 512 hôtes.
@@ -46,12 +60,12 @@ Chaque reseau entre étoile est un réseau choisi et gardé pour notre implémen
 ## Adressage des pc Statique 
 | PC | Developpement | Recherche | DMZ | Commercial | LibreService | ReseauPrincipale |
 |:--:|:-------------:|:---------:|:---:|:----------:|:------------:|:----------------:|
-| `StastiqueDev` | 54.98.152.2 | X | X | X | X | X | 
-| `StastiqueRech` | X | 54.98.153.130| X | X | X | X |
-| `StastiqueCom` | X | X | X | 54.98.152.130 | X | X |
-| `StastiqueLS` | X | X | X | X | 54.98.153.2 | X |
-| `StastiqueDMZ` | X | X | 54.98.153.194 | X | X | X |
-| `StastiquePrcl` | X | X | X | X | X | 54.98.153.229 |
+| `StatiqueDev` | 54.98.152.2 | X | X | X | X | X | 
+| `StatiqueRech` | X | 54.98.153.130| X | X | X | X |
+| `StatiqueCom` | X | X | X | 54.98.152.130 | X | X |
+| `StatiqueLS` | X | X | X | X | 54.98.153.2 | X |
+| `StatiqueDMZ` | X | X | 54.98.153.194 | X | X | X |
+| `StatiquePrcl` | X | X | X | X | X | 54.98.153.229 |
 
 ## Annexe
 ### Adressage routeur
@@ -201,6 +215,18 @@ pc Satstique LibreService
     end
 ```
 
+```cisco 
+    Routage rip ReseauPublique
+
+    conf term 
+    router rip 
+    version 2
+    no auto-summary
+    network  10.0.0.0
+    network 54.98.153.224
+    end
+```
+
 ### Configuration  DHCP sur le routeur R3 
 #### Serveur DHCP : R3
 les dix premières
@@ -280,37 +306,57 @@ Relais dhcp R4
     end
 ```
 
-
-## Configuration parfeu 
 Le réseau Libre-service ne doit pas pouvoir communiquer avec les autres services, mais peut
 communiquer sur Internet. Le service Recherche ne peut communiquer qu’avec le service Développement. Vous devez empêcher les machines du DMZ d’accéder aux autres réseaux.
-! (autorisation implicite vers 10.0.0.0/24)
+## Configuration parfeu 
 ```cisco
-Configuration de l'ACL PAREFEU sur le routeur R3
-
+configuration acl pour le reseau libre service
+    
     conf term
-    ip access-list extended PAREFEU
-    ! --- Autoriser Recherche vers Developpement ---
-    permit ip 54.98.153.128 0.0.0.63 54.98.152.0 0.0.0.127
-    permit ip 54.98.152.0 0.0.0.127 54.98.153.128 0.0.0.63
-
-    ! --- Interdire Recherche vers tout le reste (hors Developpement) ---
-    deny ip 54.98.153.128 0.0.0.63 54.98.152.128 0.0.0.127     ! vers Commercial
-    deny ip 54.98.153.128 0.0.0.63 54.98.153.0 0.0.0.127       ! vers LibreService
-    deny ip 54.98.153.128 0.0.0.63 54.98.153.192 0.0.0.31      ! vers DMZ
-
-    ! --- Interdire DMZ vers tout (sauf Internet) ---
-    deny ip 54.98.153.192 0.0.0.31 54.98.152.0 0.0.1.255       ! vers tous 54.98.152.x et .153.x
-
-    ! --- Interdire LibreService vers tous les réseaux sauf Internet (10.0.0.0/24) ---
-    deny ip 54.98.153.0 0.0.0.127 54.98.152.0 0.0.1.255        ! bloque LibreService → internes
+    ip access-list extended ACL_LibreService
     
-    ! --- Autoriser tout le reste ---
-    permit ip any any
-    
-    exit
-    
+
     interface e0/1
-    ip access-group PAREFEU in
+    ip access-group ACL_LibreService in
+    end
+
+```
+permit ip 54.98.153.0 0.0.0.127 10.0.0.0 0.0.0.255
+    permit ip 10.0.0.0 0.0.0.255 54.98.153.0 0.0.0.127
+```cisco
+configuration acl pour le reseau recherche R1
+
+conf t
+ip access-list extended ACL_RechercheVersAutre
+permit udp any eq 68 any eq 67
+permit udp any eq 67 any eq 68
+deny ip 54.98.153.128 0.0.0.63 54.98.153.192 0.0.0.31
+deny ip 54.98.153.128 0.0.0.63 54.98.153.0 0.0.0.127
+deny ip 54.98.153.128 0.0.0.63 54.98.152.128 0.0.0.127
+permit ip any any
+exit
+interface e0/2
+ip access-group ACL_RechercheVersAutre in
+ip access-list extended ACL_AutreVersRecherche
+permit udp any eq 68 any eq 67
+permit udp any eq 67 any eq 68
+deny ip 54.98.153.192 0.0.0.31 54.98.153.128 0.0.0.63
+deny ip 54.98.153.0 0.0.0.127 54.98.153.128 0.0.0.63
+deny ip 54.98.152.128 0.0.0.127 54.98.153.128 0.0.0.63
+permit ip any any
+exit
+interface e0/1
+ip access-group ACL_AutreVersRecherche in
+end
+
+```
+```cisco
+configuration acl pour le reseau dmz
+
+    conf term 
+    ip access-list extended ACL_DMZ
+    
+    interface e0/0
+    ip access-group ACL_DMZ in 
     end
 ```
