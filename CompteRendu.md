@@ -1,4 +1,5 @@
 # SAE RESEAU 
+#### Raphael BROUSSEAU groupe 11B
 
 ## Choix implémentation
 
@@ -12,15 +13,15 @@ Ensuite, j’ai mis en place le routage dynamique avec RIP v2 sur tous les route
 
 Une fois le routage fonctionnel, j’ai configuré le serveur DHCP sur le routeur R3, en prenant soin d’exclure les premières adresses de chaque sous-réseau pour les équipements à IP fixe (comme les serveurs). J’ai ensuite configuré les relais DHCP (ip helper-address) sur les autres routeurs afin que les clients puissent recevoir leurs adresses automatiquement.
 
-Enfin, j’ai appliqué une liste de contrôle d’accès (ACL) nommée PAREFEU sur le routeur R3. Cette ACL respecte les règles de sécurité demandées :
+Enfin, j’ai appliqué une liste de contrôle d’accès (ACL) nommée PAREFEU sur le routeur R3. Ces ACL respectes les règles de sécurité demandées :
 
-- Le réseau LibreService ne peut pas communiquer avec les autres réseaux internes,
+- Le réseau LibreService ne peut pas communiquer avec les autres réseaux internes, mais garde un accès à internet
 
 - Le réseau Recherche ne peut échanger qu’avec le réseau Développement,
 
 - Et les machines de la DMZ sont isolées des autres réseaux internes, tout en gardant un accès à Internet.
 
-D'ailleurs après avoir rencontré des problèmes avec le serveur dhcp suite à l'activation de la règle. J'ai autorisé expliciment les échanges du protocole UDP.
+D'ailleurs après avoir rencontré des problèmes avec le serveur dhcp suite à l'activation de ces règle. J'ai autorisé explicitement les échanges du protocole UDP dans chacune d'entre elles.
 ## Adressage des réseaux 
 
 **Adresse de base** : 54.98.152.0/23. Actuellement cette adresse permet d'acceuillir 512 hôtes.
@@ -229,8 +230,7 @@ pc Satstique LibreService
 
 ### Configuration  DHCP sur le routeur R3 
 #### Serveur DHCP : R3
-les dix premières
-adresses de chaque sous-réseau sont réservées pour l’installation de serveurs avec des adresses statiques.
+
 
 ```cisco
 Serveur dhcp R3
@@ -274,8 +274,6 @@ Serveur dhcp R3
     ip dhcp excluded-address 54.98.153.193 54.98.153.204
     end
 ```
-
-
 #### Configuration relai DHCP : R1
 ```cisco
 Relais dhcp R1
@@ -308,21 +306,33 @@ Relais dhcp R4
 
 Le réseau Libre-service ne doit pas pouvoir communiquer avec les autres services, mais peut
 communiquer sur Internet. Le service Recherche ne peut communiquer qu’avec le service Développement. Vous devez empêcher les machines du DMZ d’accéder aux autres réseaux.
-## Configuration parfeu 
+## Configuration acl etendue
+### configuration acl pour le reseau LibreService
 ```cisco
 configuration acl pour le reseau libre service
     
-    conf term
-    ip access-list extended ACL_LibreService
-    
-
-    interface e0/1
-    ip access-group ACL_LibreService in
-    end
-
+conf term
+ip access-list extended ACL_LibreServiceVersAutre
+permit udp any eq 68 any eq 67
+permit udp any eq 67 any eq 68
+deny ip 54.98.153.0 0.0.0.127 54.98.152.0 0.0.0.127
+deny ip 54.98.153.0 0.0.0.127 54.98.152.128 0.0.0.127
+permit ip any any
+exit
+interface e0/0
+ip access-group ACL_LibreServiceVersAutre in
+ip access-list extended ACL_AutreVersLibreService
+permit udp any eq 68 any eq 67
+permit udp any eq 67 any eq 68
+deny ip  54.98.152.0 0.0.0.127 54.98.153.0 0.0.0.127
+deny ip  54.98.152.128 0.0.0.127 54.98.153.0 0.0.0.127
+permit ip any any
+exit
+interface e0/1
+ip access-group ACL_AutreVersLibreService in 
+end
 ```
-permit ip 54.98.153.0 0.0.0.127 10.0.0.0 0.0.0.255
-    permit ip 10.0.0.0 0.0.0.255 54.98.153.0 0.0.0.127
+### Configuration acl pour le reseau recherche
 ```cisco
 configuration acl pour le reseau recherche R1
 
@@ -350,13 +360,30 @@ ip access-group ACL_AutreVersRecherche in
 end
 
 ```
+### Configuration acl pour le resesau dmz
 ```cisco
 configuration acl pour le reseau dmz
 
-    conf term 
-    ip access-list extended ACL_DMZ
-    
-    interface e0/0
-    ip access-group ACL_DMZ in 
-    end
+conf term 
+ip access-list extended ACL_DMZVersAutre
+permit udp any eq 68 any eq 67
+permit udp any eq 67 any eq 68  
+deny ip 54.98.153.192 0.0.0.31 54.98.153.0 0.0.0.127
+deny ip 54.98.153.192 0.0.0.31 54.98.152.128 0.0.0.127
+deny ip 54.98.153.192 0.0.0.31 54.98.152.0 0.0.0.127
+permit ip any any
+exit
+interface e0/0
+ip access-group ACL_DMZVersAutre in 
+ip access-list extended ACL_AutreVersDMZ
+permit udp any eq 68 any eq 67
+permit udp any eq 67 any eq 68  
+deny ip  54.98.153.0 0.0.0.127 54.98.153.192 0.0.0.31
+deny ip  54.98.152.128 0.0.0.127 54.98.153.192 0.0.0.31
+deny ip  54.98.152.0 0.0.0.127 54.98.153.192 0.0.0.31
+permit ip any any
+exit
+interface e0/1
+ip access-group ACL_AutreVersDMZ in 
+end
 ```
